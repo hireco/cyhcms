@@ -1,2 +1,2 @@
 # cyhcms
-an acient CMS for website construction in web 1.0 ego
+an acient CMS for website construction in web1.0 ages
