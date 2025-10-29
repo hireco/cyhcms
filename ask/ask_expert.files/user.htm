@@ -1,0 +1,1044 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>yi88992005 - 个人中心</title>
+<link href="http://i2.sinaimg.cn/pfp/i/z2/css/z2.css" rel="stylesheet" type="text/css">
+<link href="http://www.sinaimg.cn/pfp/i/z3/css/grzx_v2.css" rel="stylesheet" type="text/css">
+<script src="http://image2.sina.com.cn/pfp/i/z2/css/z2.js" language="javascript" type="text/javascript"></script>
+<script src="/user/group.js" language="javascript" type="text/javascript"></script>
+</head>
+
+<body>
+<script src="http://iask.sina.com.cn/js/classify_flash.js" language="JavaScript" type="text/javascript"></script>
+<script src="/user/getuserdata.js" language="javascript" type="text/javascript"></script>
+<script src="/js/prototype-1.4.0.js" language="javascript" type="text/javascript"></script>
+<script src="/js/zhishi_browse1.js" language="javascript" type="text/javascript"></script>
+<style type="text/css">
+<!--
+.login_box{background:url(http://www.sinaimg.cn/pfp/i/z3/login_boxBg.gif) no-repeat; width:372px; height:165px; position:absolute; z-index:200; left:-192px; top:0px; text-align:left;}
+.login_box h3{padding:15px 0 2px 20px; width:200px; text-align:left; font-size:12px; color:#333;}
+.lb_close{float:right;padding:13px 15px 0 0!important;  padding:15px 10px 0 0; text-align:right;}
+.login_box .tips{font-weight:bold; color:#f93; padding:4px 20px 0 90px;text-align:left;}
+.login_box p{padding:4px 20px 0px 43px;}
+.login_box .login_button{border:none; background:url(http://www.sinaimg.cn/pfp/i/z3/login_button.gif) no-repeat; width:56px; height:22px; margin-top:6px!important; margin-top:2px;}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+function do_submit (args) {
+	var fn = document.getElementById ('zsForm');
+	try {
+		fn.classid.value = getClassify ().GetVariable ("id");
+		fn.gjss.value = 1;
+	}catch (ex) {
+		fn.classid.value = '{_CLASSID_}';
+	}
+	return iask_submit (fn, args);
+}
+function fShow (){
+        document.getElementById ('d1').style.visibility = "visible";
+}
+function fHide (){ 
+        document.getElementById ('d1').style.visibility = "hidden";
+        document.getElementById ('z2ss_r').src="http://i3.sinaimg.cn/pfp/iask/zsr/z2_ss_r1.gif";
+}
+function ss_on (n){
+        var z2 = document.getElementById ('z2ss_r');
+        if(z2.src.indexOf("z2_ss_r4")!=-1) { return false; }
+        z2.src="http://i2.sinaimg.cn/pfp/iask/zsr/z2_ss_r"+n+".gif";
+}
+function ss_of (n){
+        var z2 = document.getElementById ('z2ss_r');
+        if(z2.src.indexOf("z2_ss_r4")!=-1) { return false; }
+        z2.src="http://i2.sinaimg.cn/pfp/iask/zsr/z2_ss_r"+n+".gif";
+}
+function show_headlogin()
+{
+	$("logindiv").innerHTML = s_loginHtml();
+	$("logindiv").style.display="block";
+}
+function s_loginTip()
+{
+	var f = $("loginform");
+	if(f.name.value == "" && f.pass.value == "")
+	{
+		$("logintipdiv").style.display = "block";
+		$("logintipdiv").innerHTML = "请输入会员名和密码！";
+		f.name.focus();
+		return false;
+	}
+	else if(f.name.value == "" ||f.name.value=="新浪会员名/UC号/手机号")
+	{
+		$("logintipdiv").style.display = "block";
+		$("logintipdiv").innerHTML = "会员名不能为空,请输入会员名！";
+		f.name.focus();
+		return false;
+	}
+	else if(f.pass.value == "")
+	{
+		$("logintipdiv").style.display = "block";
+		$("logintipdiv").innerHTML = "密码不能为空,请输入密码！";
+		f.pass.focus();
+		return false;
+	}
+	
+	var thisuri  = window.location.href.toLowerCase();
+	var uri = "/user/newloginajax.php";
+	pars  = "flag=" + ((f.flag.checked==true)?1:0);
+	pars += "&name=" + f.name.value;
+	pars += "&pass=" + f.pass.value;
+	pars += "&url=" + thisuri;
+	pars += "&type=xml";
+	
+	var myAjax = new Ajax.Request(uri, {method: "get", parameters: pars, onComplete: function (req) { s_loginTip2(req); }});
+	return false;
+}
+function s_loginTip2(req)
+{
+	var v_result = g_getMValue(req.responseXML, "result", 0);
+	if(v_result != 1)
+	{
+		var v_reason = g_getMValue(req.responseXML, "reason", 0);
+		$("logintipdiv").style.display = "block";
+		$("logintipdiv").innerHTML = "登录失败:"+v_reason;
+		var f = $("loginform");
+		f.name.focus();
+		return false;
+	}
+	$("logindiv").innerHTML = '';
+	$("logindiv").style.display="none";
+	var thisuri  = window.location.href.toLowerCase();
+	top.location.href = thisuri;
+}
+</script>
+<div id="d1" style="position:absolute; z-index:12; top:44px; left:488px; visibility:hidden; border:1px solid #dde1ea; border-bottom:1px solid #b2b8d0; border-right:1px solid #b2b8d0;">
+	<div class="gj" align="center">
+		<div>
+			<div class="fl" style="padding-left:5px;">高级搜索</div>
+			<div class="fr"><a href="javascript:fHide();void(0);" title="关闭" class="cc"><b>×</b></a></div>
+			<div class="cb"></div>
+		</div>
+		<div style="background:#fff; padding:10px;">
+			<div align="left">选择分类范围：</div>
+			<div><script language="javascript" type="text/javascript">setClassifyObj(0, "#FFFFFF",0, "18|400|150");</script></div>
+			<div style="padding:5px; padding-top:12px;"><input type="submit" value="搜 索" class="hd_tw"  onClick="return do_submit('know');"></div>
+		</div>
+	</div>
+</div>
+<div id="head">
+	<iframe name="iframe_data" style="display:none;" ></iframe>
+	<div class="fl hd1"><a href="/"><img src="http://image2.sina.com.cn/pfp/i/z2/z2_logo.gif" border="0" width="145" height="45" alt="爱问知识人"></a></div>
+	<div class="fl hd2">
+		<div style="position:relative; z-index:10; ">
+			<form id="zsForm" name="zsForm" method="get" target="_blank" onSubmit="return iask_submit(this,'know');">
+			<div class="fl"><input type="text" name="key" id="key" size="40" class="f14" value="" onClick="ckwords(this);"></div>
+			<div class="fl" style="padding:2px 0 0 10px;"><input type="submit" value="搜 索" class="hd_ss" onMouseOver="ss_on(2);" onMouseOut="ss_of(1);"></div>
+			<div class="fl" style="padding:2px 10px 0 0;"><img id="z2ss_r" class="cp" src="http://i0.sinaimg.cn/pfp/iask/zsr/z2_ss_r1.gif" border="0" width="17" height="20" onMouseOver="ss_on(3);" onMouseOut="ss_of(1);" onClick="this.src='http://i0.sinaimg.cn/pfp/iask/zsr/z2_ss_r4.gif';fShow();"></div>
+			<div class="fl" style="padding-top:2px;"><input type="button" value="提 问" class="hd_tw" onClick="return iask_submit(this.form,'ask');"></div>
+			<div class="cb"></div>
+			<input type="hidden" name="title">
+			<input type=hidden name="classid" value="0">
+			<input type=hidden name="type" value="1">
+			<input type=hidden name="gjss" value="0">
+			<input type=hidden name="page" value="0">
+			</form>
+		</div>
+	</div>
+	<div class="fr" style="padding:5px;position:relative; z-index:11">
+		<a href="javascript:show_headlogin();void(0);">登录</a><span class="c9"  style="margin:10px;">|</span><div id="logindiv" align="center" style="display:none; position:absolute; width:250px; top:20px; right:20px;"></div><div id="logindiv_1" align="center" style="display:none; position:absolute; width:250px; top:450px; left:10px; border:3px solid #eee; background:#f9f9f9"></div>
+		<a href="/"  target="_blank" title="知识人首页">知识人首页</a>
+	</div>
+	<div class="cb"></div>
+</div>
+
+<div id="nav">
+	<div class="fl">|</div>
+	<div class="fl" style="width:52px;"><a href="/" title="首页">首页</a></div>
+	<div class="fl">|</div>
+	<div class="fl" style="width:78px;"><a href="/browse/catalog2.php" title="问题分类">问题分类</a></div>
+	<div class="fl">|</div>
+	<div class="fl" style="width:91px;"><a href="/rank/browse_question_by_rank.php" title="问题排行榜">问题排行榜</a></div>
+	<div class="fl">|</div>
+	<div class="fl" style="width:78px;"><a href="http://ishare.iask.sina.com.cn" title="共享资料">共享资料</a></div>
+	<div class="fl">|</div>
+	<div class="fl" style="width:78px;"><a href="http://cidian.iask.sina.com.cn/" title="开放词典">开放词典</a></div>
+	<div class="fl">|</div>
+	<div class="fl" style="width:65px;"><a href="/toplist/toplist.php" title="用户榜">用户榜</a></div>
+	<div class="fl">|</div>
+	<div class="fl" style="width:65px;"><a href="/info/all_expert.html" title="专家团">专家团</a></div>
+	<div class="fl">|</div>
+	<div class="fl" style="width:65px;"><a href="http://iask.com/more.html" title="更多">更多<span class="f10">&gt;&gt;</span></a></div>
+	<div class="fr" style="padding-top:4px;"><a href="/user/user.php" title="个人中心"><img src="http://image2.sina.com.cn/pfp/ask/images/zhishi/grzx.gif" border="0" width="78" height="19"></a></div>
+	<div class="cb"></div>
+</div>
+
+<div id="accessPath">
+
+	<a href="/index.php" title="知识人">知识人</a> &gt;
+	<a href="/user/user.php?uid=" title="个人中心">个人中心</a> &gt; 
+	他的首页
+</div>
+
+<table border="0" id="content" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" id="cont_nav">
+			<div class="myHome"><h3><img src="http://www.sinaimg.cn/pfp/i/z3/home.gif" alt="我的首页" ><a href="/user/user.php?uid="  class="c007f"> 返回我的首页</a></h3></div>
+	<div class="navTopbg"></div>
+        <div class="navBg">
+	<ul>
+		<li id="li_head" class="bold_li"><a href="/user/user.php?uid=1156118465">他的首页 </a>&nbsp;<img src="http://www.sinaimg.cn/pfp/i/z3/arrow.gif" alt="arrow"></li>
+		<li id="li_score" ><a href="/user/score_list.php?uid=1156118465">积分等级</a></li>
+		<li id="li_ans" ><a href="/user/my_ans.php?uid=1156118465">他的回答</a></li>
+		<li id="li_ishare" ><a href="/user/my_ishare.php?uid=1156118465">他的资料</a></li>
+		<li id="li_dictionary" ><a href="/user/my_dictionary.php?uid=1156118465">他的词典</a></li>
+		
+	</ul>
+	</div>
+	
+
+      <div class="navButbg"></div></td>
+    <td valign="top" id="cont_main"><div class="cont">
+	
+      <div>
+        <div class="user_pic">
+          <div class="pic"><img src=http://image.iask.sina.com.cn/logo/65/84/120_1156118465.gif?00:52:33 style="width:120;height:120;" alt="yi88992005"></div>
+		<a href="javascript:s_addfriend('',1156118465);" class="c07f">加为好友</a><span style="color:#74797d; margin:5px">|</span><a href="#" onClick="openWindow('/message/send_msg.php?toid=1156118465', '470', '350', '发消息');return false;" class='c07f'>给他发消息</a>
+	</div>
+        <div class="user_detail">
+          <h3>yi88992005</h3>
+          <div class="user_fg">通行证号：1156118465<br/>
+            性&nbsp;&nbsp;&nbsp;&nbsp;别：男 <br/>
+		<div id="div_birth" >
+            出生日期：1900-1-1 <br/>
+		</div>
+		<div id="div_from" >
+            来&nbsp;&nbsp;&nbsp;&nbsp;自：美国LOS ANGELES<br/>
+		</div>
+		<div id="div_email" style = "display:none">
+            邮&nbsp;&nbsp;&nbsp;&nbsp;箱：
+		
+		yi88992005@sina.com
+		</div>
+           </div>
+          <div class="pt10 c333"> 积&nbsp;&nbsp;&nbsp;&nbsp;分：<a href="/user/score_list.php?uid=1156118465" target="_blank">18517</a><br/>
+            级&nbsp;&nbsp;&nbsp;&nbsp;别：<a href="http://iask.sina.com.cn/help/yhjb.html" target="_blank">大师</a><br/>
+            排&nbsp;&nbsp;&nbsp;&nbsp;名：<a href="http://iask.sina.com.cn/toplist/top100.php" target="_blank">675</a><br/>
+            提 问 数：13<br/>
+            回 答 数：1133<br/>
+            采 纳 率：58%<br/>
+           	
+            	擅长分类：<a href="/browse/get_class.php?fatherid=561&classifyflag=0">军队武器</a><br/>
+		<br>管 理 员：<a href="/browse/get_class.php?fatherid=304&classifyflag=0" class="c07f" target="_blank">性话题</a>&nbsp;<a href="/browse/get_class.php?fatherid=507&classifyflag=0" class="c07f" target="_blank">汽车养护</a>&nbsp;<a href="/browse/get_class.php?fatherid=508&classifyflag=0" class="c07f" target="_blank">汽车改装</a>&nbsp;<a href="/browse/get_class.php?fatherid=509&classifyflag=0" class="c07f" target="_blank">汽车美容</a>&nbsp;<a href="/browse/get_class.php?fatherid=510&classifyflag=0" class="c07f" target="_blank">高档车</a>&nbsp;<a href="/browse/get_class.php?fatherid=511&classifyflag=0" class="c07f" target="_blank">二手车</a>&nbsp;<a href="/browse/get_class.php?fatherid=512&classifyflag=0" class="c07f" target="_blank">驾驶技术</a>&nbsp;<a href="/browse/get_class.php?fatherid=515&classifyflag=0" class="c07f" target="_blank">购车支招</a>&nbsp;<a href="/browse/get_class.php?fatherid=516&classifyflag=0" class="c07f" target="_blank">汽车业界</a>&nbsp;<a href="/browse/get_class.php?fatherid=561&classifyflag=0" class="c07f" target="_blank">军队武器</a>&nbsp;<a href="/browse/get_class.php?fatherid=575&classifyflag=0" class="c07f" target="_blank">留美</a>&nbsp;<a href="/browse/get_class.php?fatherid=2238&classifyflag=0" class="c07f" target="_blank">汽车轮胎</a>&nbsp;<a href="/browse/get_class.php?fatherid=2262&classifyflag=0" class="c07f" target="_blank">汽车品牌</a>&nbsp;<a href="/browse/get_class.php?fatherid=3278&classifyflag=0" class="c07f" target="_blank">汽车品牌</a>&nbsp;<br>
+	      	
+          </div>
+        </div>
+        <div class="cb"></div>
+      </div>
+      <div class="titlebg">
+        <h2 class="gzwt">他关注的问题</h2>
+      </div>
+	<center><div style="padding:25px 0 20 12px;">他暂时没有添加关注的问题。</div></center>
+      <div class="titlebg">
+        <h2 class="ly">留言</h2>
+      </div>
+	
+<SCRIPT language="javascript">
+
+function checktext(text)
+{
+   allValid = true;
+   for (i = 0; i < text.length; i++)
+   {
+    if (text.charAt(i) != " ")
+    {
+     allValid = false;
+     break;
+    }
+   }
+return allValid;
+}
+
+function gbcount(message,total,used,remain)
+{
+var max;
+max = total.value;
+if (message.value.length > max) {
+message.value = message.value.substring(0,max);
+used.value = max;
+remain.value = 0;
+}
+else {
+used.value = message.value.length;
+remain.value = max - used.value;
+}
+}
+function submitcomment(form)
+{
+   var r, re;                      
+   re = /(^\s*)|(\s*$)/g;   
+   r = form.content.value.replace(re, "");   
+   if(0 == r.length)
+   {    
+        show_center_div("comment_err");
+        show_div_cover();
+        return 0;
+   }
+   else
+   {
+        form.action = "/user/addmsg.php";
+        form.method = "post";
+        form.submit();
+   }
+}
+function refresh()
+{window.location.href=window.location.href;}
+function submitcomment1(form)
+{
+   var r, re;                      
+   re = /(^\s*)|(\s*$)/g;        
+   r = form.reply.value.replace(re, "");   
+   if(0 == r.length)
+   {    
+        show_center_div("comment_err");
+        show_div_cover();
+        return 0;
+   }
+   else
+   {
+        form.action = "/user/addmsg.php";
+        form.method = "post";
+        form.submit();
+   }
+}
+function show_div_cover()
+{
+        var bodySize = getBodySize();
+        div_cover.style.width = bodySize[0] + 'px';
+        div_cover.style.height = bodySize[1] + 'px';
+        div_cover.style.display = "block";
+}
+function show_delmsg(cid,deltypeid,touid,page)
+{
+        var del_obj=document.getElementById('delmsg');
+        del_obj.style.display="block";
+        del_obj.style.left=(document.body.clientWidth-del_obj.clientWidth)/2+document.body.scrollLeft;
+        del_obj.style.top=(document.body.clientHeight-del_obj.clientHeight)/2+document.body.scrollTop;
+        show_div_cover();
+        var f=document.getElementById('del_msg');
+        f.deltrue.onclick=function(){
+	
+        sub_delmsg(cid,deltypeid,touid,page);
+        }
+
+}
+function sub_delmsg(cid,deltypeid,touid,page)
+{
+        var del_obj=document.getElementById('delmsg');
+        del_obj.style.display="none";
+
+        var f_action_url ="/user/delmsg.php";
+        var f=document.getElementById('del_msg');
+        f.to_uid.value=touid;
+        f.cid.value=cid;
+        f.deltypeid.value=deltypeid;
+        f.page.value=page;
+        f.method="post";
+        f.action =f_action_url;
+        f.submit();
+        window.location.href="/user/user.php?uid="+touid;
+}
+function showhide(t_id){//显示隐藏程序
+   var t_id;//表格ID
+   var change=document.getElementById(t_id);
+   if (change.style.display == "none") {//如果为隐藏状态
+     change.style.display="";//切换为显示状态
+   }else{//否则
+     change.style.display="none";//切换为隐藏状态
+   }
+   
+}
+function $(s){if(document.getElementById){return eval('document.getElementById("' + s + '")');}else{return eval('document.all.' + s);}}
+function hide(t_id){
+   document.getElementById(t_id).style.display="none";
+}
+
+function checkid(T_id)
+{
+   var T_id;
+   var change=document.getElementById('T_id')
+   change.checked = 'checked';
+}
+
+</script>
+        <div id="message_area">
+		<iframe name="msg_iframe" style="display:none;"></iframe>
+                <form target="msg_iframe" action="/user/addmsg.php" method="post" onSubmit= "">
+                        <input type="hidden" name = "to_uid" value = "1156118465" >
+                        <input type="hidden" name = "typeid" value = "0" >
+                        <input type="hidden" name="page" value="0" >
+			<textarea name="content" cols="80" rows="4"
+onKeyDown="gbcount(this.form.content,this.form.total,this.form.used,this.form.remain);" onKeyUp="gbcount(this.form.content,this.form.total,this.form.used,this.form.remain);"></textarea>
+                        <p style="float:left;color:#999;">
+                        <span style="display:none;">
+                        <input disabled maxLength="4" name="total" size="3" value="200" class="inputtext">
+                        <input disabled maxLength="4" name="used" size="3" value="0" class="inputtext">
+                        </span>
+                        还可输入
+                        <input disabled maxLength="4" name="remain" size="3" value="200" class="inputtext">个汉字
+                        </p>
+                        <p style="float:right;"><input name="button" type = "button" style="width:105px; height:26px;font-size:14px;" value="提交留言" onClick = "submitcomment(this.form);"/></p>
+                        <div class="cb"></div>
+                </form>
+      </div>
+	<iframe name="iframe_comment" style="display:none;"></iframe>
+	<form method=""  target="iframe_comment" id="del_comment" style="padding-top:7px;">
+	</form>
+<div class=mesList>
+<img src='http://image.iask.sina.com.cn/logo/default.gif' class=users alt=221.229.17.*>
+<div class=mesCont>221.229.17.* <span class=c9>2008-11-27 23:02</span>
+<div class='lh15 p_2'>你好，我家老爷子47年2月应征，48年1月正式入伍。所属部队30军12纵34旅102团1营1连，后为炮团2营4连，再为海军警卫团通讯连；又为海军炮兵2团1营通讯连，又编海军炮兵独立32营4连，再炮兵独立15营5连，终为1001部队1567分队58连，历任通讯班长。这个部队从没消停过。55年9月复员回乡任乡民兵中队长，57年1月进江苏水利系统工作至88年，现在还是退休工人不属离休。请指点该咋办谢谢！</div>
+</div>
+<div class=cb></div>
+ </div>
+<div class=mesList>
+<img src='http://image.iask.sina.com.cn/logo/default.gif' class=users alt=120.1.181.*>
+<div class=mesCont>120.1.181.* <span class=c9>2008-10-22 11:39</span>
+<div class='lh15 p_2'>请教您，AUG步枪的价格是多少？在哪里可以买到啊。谢谢</div>
+</div>
+<div class=cb></div>
+ </div>
+<div class=mesList>
+<img src='http://image.iask.sina.com.cn/logo/default.gif' class=users alt=120.1.181.*>
+<div class=mesCont>120.1.181.* <span class=c9>2008-10-22 11:38</span>
+<div class='lh15 p_2'>请教您，AUG步枪的价格是多少？在哪里可以买到啊。谢谢</div>
+</div>
+<div class=cb></div>
+ </div>
+<div class=mesList>
+<img src='http://image.iask.sina.com.cn/logo/53/28/50_1192672853.gif' class=users alt=tz6362191>
+<div class=mesCont><a href='/user/user.php?uid=1192672853' class=c07f target="_blank">tz6362191</a> <span class=c9>2008-09-30 20:48</span>
+<div class='lh15 p_2'>云是绚丽的，雨是透明的，风是执着的，月是深情的，思是缠绵的，爱是永恒的，星是灿烂的，您是难忘的。衷心地祝福您——国庆快乐！</div>
+</div>
+<div class=cb></div>
+ </div>
+<div class="mesMore"><a href="/user/getmsgboard.php?uid=1156118465" target="_blank" class="c07f">查看更多&gt;&gt;</a></div>
+<center>
+		<div id="comment_err" class="main1" style="display:none;position:absolute; left:320px; top:310px;"> 
+		
+			<div id="headerbg" >
+			
+			<h2>爱问知识人提示</h2>
+			<span><a href="javascript:h('comment_err');h('div_cover');void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+			<div class="c"></div>
+		</div>
+		<div id="pop_cont1">
+			<div class="area">
+				<img src="http://www.sinaimg.cn/pfp/i/z3/notice_grzx.gif" alt="notice" />
+				<p style="line-height:22px;">留言内容不能为空！<br/>
+				&nbsp;
+				</p>
+				<div class="c"></div>
+			</div>
+			<div id="butt_area" >
+			<div style="padding-top:7px;">
+				<input type="button" value="确 定" name="" class="buttBg1" onClick="h('comment_err');h('div_cover');" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+			</div>
+			</div>
+		</div>
+	</div>	
+                <div id="addmess" class="main1" style="display:none;position:absolute; left:320px; top:310px;">
+
+                        <div id="headerbg" >
+
+                        <h2>爱问知识人提示</h2>
+                        <span><a href="javascript:h('addmess');refresh();h('div_cover');void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+                        <div class="c"></div>
+                </div>
+                <div id="pop_cont1">
+                        <div class="area">
+                                <img src="http://www.sinaimg.cn/pfp/i/z3/notice_grzx.gif" alt="notice" />
+
+                                <p style="line-height:22px;">您的留言已经提交成功！<br/>
+                                请您稍候几分钟，审核通过后即可显示。
+                                </p>
+                                <div class="c"></div>
+                        </div>
+                        <div id="butt_area" >
+			<div style="padding-top:7px;">
+                                <input type="button" value="确 定"  id="addvic" name="" class="buttBg1" onClick="refresh();h('addmess');h('div_cover');void(0);" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';" />
+
+                        </div>
+                        </div>
+                </div>
+        </div>
+                <div id="forbid_user" class="main1" style="display:none;position:absolute; left:320px; top:310px;">
+
+                        <div id="headerbg" >
+
+                        <h2>爱问知识人提示</h2>
+                        <span><a href="javascript:h('forbid_user');refresh();h('div_cover');void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+                        <div class="c"></div>
+                </div>
+                <div id="pop_cont1">
+                        <div class="area">
+                                <img src="http://www.sinaimg.cn/pfp/i/z3/notice_grzx.gif" alt="notice" />
+
+                                <p style="line-height:22px;">您的帐号或IP已经被封禁！<br/>
+                                暂时无法提交留言。
+                                </p>
+                                <div class="c"></div>
+                        </div>
+                        <div id="butt_area">
+			<div style="padding-top:7px;">
+                                <input type="button" value="确 定"  id="addvic" name="" class="buttBg1" onClick="refresh();h('forbid_user');h('div_cover');void(0);" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';" />
+
+                        </div>
+                        </div>
+                </div>
+        </div>
+                <div id="words_filter" class="main1" style="display:none;position:absolute; left:320px; top:310px;">
+
+                        <div id="headerbg" >
+
+                        <h2>爱问知识人提示</h2>
+                        <span><a href="javascript:h('words_filter');h('div_cover');void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+                        <div class="c"></div>
+                </div>
+                <div id="pop_cont1">
+                        <div class="area">
+                                <img src="http://www.sinaimg.cn/pfp/i/z3/notice_grzx.gif" alt="notice" />
+
+                                <p style="line-height:22px;">您提交的内容含有敏感词汇<br/>
+                                &nbsp;&nbsp;&nbsp;
+                                </p>
+                                <div class="c"></div>
+                        </div>
+                        <div id="butt_area" >
+			<div style="padding-top:7px;">
+                                <input type="button" value="确 定"  id="addtrue" name="" class="buttBg1" onClick="javascript:h('words_filter');h('div_cover');void(0);" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';" />
+
+                        </div>
+                        </div>
+                </div>
+        </div>
+<div id="delmsg" class="main1" style="display:none;position:absolute; left:320px; top:310px;">
+<div id="headerbg" >
+<h2>爱问知识人提示</h2>
+<span><a href="javascript:h('delmsg');h('div_cover');void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+<div class=c></div>
+</div>
+<div id="pop_cont1">
+<div class="area">
+<img src="http://www.sinaimg.cn/pfp/i/z3/notice_grzx.gif" alt="notice" />
+<p style="line-height:22px;">您确定要删除该留言吗?<br />
+留言删除后，将无法恢复！
+</p>
+<div class=c></div>
+</div>
+<div id="butt_area">
+<div style="padding-top:7px;">
+<iframe name="dele_iframe" style="display:none;"></iframe>
+<form method="post"  target="dele_iframe" action="/user/delmsg.php" id="del_msg" >
+<input type=hidden name =deltypeid >
+<input type=hidden name=cid >
+<input type=hidden name =to_uid >
+<input type=hidden name =page >
+<input type=button value="确 定"  id=deltrue name="" class="buttBg1"  onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>&nbsp;
+<input type=button value="取 消" name="" class="buttBg1" onClick="h('delmsg');h('div_cover');" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+</form>
+</div>
+</div>
+</div>
+</div>
+</center>
+
+    </div>
+	</td>
+    <td  valign="top" id="cont_friend">
+		<div id="blackboard">
+			<div class="p10">
+				<h4>他的小黑板</h4>
+				
+				<div class="cb"></div>
+				<div class="nullbbcont">
+					<p>yi88992005最近没有留言给大家。</p>
+				</div>
+			</div>
+		</div>
+		
+		<h3>谁来看过他</h3>
+			 <ul class="friends"><li><a href="./user.php?uid=1218462505"><img src=http://image.iask.sina.com.cn/logo/05/25/50_1218462505.gif alt="q123254582"></a><a href="./user.php?uid=1218462505"  class="c07f">q123254582</a></li><li><a href="./user.php?uid=1056294841"><img src=http://image.iask.sina.com.cn/logo/41/48/50_1056294841.gif alt="小丁"></a><a href="./user.php?uid=1056294841"  class="c07f">小丁</a></li><li><a href="./user.php?uid=1564512764"><img src=http://image.iask.sina.com.cn/logo/64/27/50_1564512764.gif alt="asiatico"></a><a href="./user.php?uid=1564512764"  class="c07f">asiatico</a></li></ul><ul class="friends c" style="padding-top:8px"><li><a href="./user.php?uid=1570471535"><img src=http://image.iask.sina.com.cn/logo/35/15/50_1570471535.gif alt="不懂"></a><a href="./user.php?uid=1570471535"  class="c07f">不懂</a></li><li><a href="./user.php?uid=1570451744"><img src=http://image.iask.sina.com.cn/logo/44/17/50_1570451744.gif alt="小瞧桥"></a><a href="./user.php?uid=1570451744"  class="c07f">小瞧桥</a></li><li><a href="./user.php?uid=1097435187"><img src=http://image.iask.sina.com.cn/logo/87/51/50_1097435187.gif alt="zenfa2005"></a><a href="./user.php?uid=1097435187"  class="c07f">zenfa2005</a></li></ul><div class="friend_more"><a href="/user/visitor_list.php?uid=1156118465" class="c07f">查看更多&gt;&gt;</a></div> 
+		<div class="c"></div>
+		<h3>他的好友</h3>
+			<ul class="friends"><li><a href="./user.php?uid=1234306280"><img src=http://image.iask.sina.com.cn/logo/80/62/50_1234306280.gif alt="他乡明月满西楼"></a><a href="./user.php?uid=1234306280"  class="c07f">他乡明月满西楼</a></li><li><a href="./user.php?uid=1223463947"><img src=http://image.iask.sina.com.cn/logo/47/39/50_1223463947.gif alt="十月"></a><a href="./user.php?uid=1223463947"  class="c07f">十月</a></li><li><a href="./user.php?uid=1238940317"><img src=http://image.iask.sina.com.cn/logo/17/03/50_1238940317.gif alt="leeporsche911"></a><a href="./user.php?uid=1238940317"  class="c07f">leeporsche911</a></li></ul><ul class="friends c" style="padding-top:8px"><li><a href="./user.php?uid=1200571224"><img src=http://image.iask.sina.com.cn/logo/24/12/50_1200571224.gif alt="无敌LOLI妹"></a><a href="./user.php?uid=1200571224"  class="c07f">无敌LOLI妹</a></li><li><a href="./user.php?uid=1429275877"><img src=http://image.iask.sina.com.cn/logo/77/58/50_1429275877.gif alt="飞飞飞"></a><a href="./user.php?uid=1429275877"  class="c07f">飞飞飞</a></li><li><a href="./user.php?uid=1255542825"><img src=http://image.iask.sina.com.cn/logo/25/28/50_1255542825.gif alt="最后的瓜子"></a><a href="./user.php?uid=1255542825"  class="c07f">最后的瓜子</a></li></ul><div class="friend_more"><a href="/user/friend_list.php?uid=1156118465" class="c07f">查看更多&gt;&gt;</a></div>
+		
+	</td>
+  </tr>
+</table>
+<div id="btm" align="center">
+	<div class="btm1"><a href="http://iask.sina.com.cn/browse/guest.php" target="_blank">意见反馈</a> - <a href="http://jingjia.sina.net" target="_blank">网站推广</a> - <a href="http://iask.com/info/hr.html" target="_blank">招贤纳士</a> - <a href="http://iask.com/more.html" target="_blank">爱问大全</a></div>
+	<div class="btm2">&copy; 2008 Sina.com <a href="http://iask.com/help/mzsm.html" target="_blank">免责声明</a></div>
+</div>
+<div	id="div_cover" name="div_cover"  class="div_cover" style="display:none">
+</div>
+<iframe name="iframe_logo" style="display:none;"></iframe>
+<form id="form_logo"  name="form_logo"  action="/user/userchglogo.php" target="iframe_logo" onsubmit="return chkFile();"  method="post" enctype="multipart/form-data"  >
+<center>
+	<div id="edit_my_img" name="edit_my_img" class="main7" style="display:none;">
+		<div id="headerbg">
+			<h2>修改头像</h2>
+			<span><a href="javascript:h('div_cover');h('edit_my_img');show_error('','errorlogodiv');void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+			<div class="c"></div>
+		</div>
+		<div id="pop_cont7">
+			<div class="area">
+				<div  id="errorlogodiv"  name="errorlogodiv" style="height:35px;"><p></p></div>
+				<div class="c"></div>
+				<div class="upload">
+					<input type="hidden" name="MAX_FILE_SIZE" value="500000">
+					<input type="file" name="logofile" style="width:330px; height:23px;" onchange="check_logo()"><br>
+					<p>
+						支持图片格式：JPG、GIF、PNG <br/>
+						图片大小不超过500K <br/>
+						建议头像尺寸：120 x 120 px <br/>
+					</p>
+				</div>
+				<div class="c"></div>
+			</div>
+			<div id="butt_area">
+			<div  style="padding-top:7px;">
+				<!--
+				<input onclick="save_logo('logofile',1156118465);void(0);" name="uploadbtn"  id="uploadbtn" type="button"  value="确 定" class="buttBg1" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/> 
+				!-->
+				<input   name="uploadbtn"  id="uploadbtn" type="submit"  value="确 定" class="buttBg1" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/> 
+				&nbsp;
+				<input type="button" value="取 消" name="" class="buttBg1" onClick="h('edit_my_img');h('div_cover');show_error('','errorlogodiv');" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+			</div>
+			</div>
+		</div>
+	</div>
+</center>
+</form>
+<form>
+<center>
+	<div id="div_succ_upload" class="main3" style="display:none">
+		<div id="headerbg">
+			<h2>爱问知识人提示</h2>
+			<span><a href="javascript:h('div_succ_upload');h('div_cover');parent.location.href=parent.location.href;void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+			<div class="c"></div>
+		</div>
+		<div id="pop_cont3">
+			<div class="area">
+				<img src="http://www.sinaimg.cn/pfp/i/z3/ok.gif" alt="上传成功" />
+				<p style="line-height:22px;">您的头像已经上传成功！<br/>
+				请您稍候几分钟，审核通过后即可显示。
+				</p>
+				<div class="c"></div>
+			</div>
+			<div id="butt_area">
+			<div  style="padding-top:7px;">
+				<input type="button"  onclick="hide_succ_upload(1156118465)" value="确 定" name="" class="buttBg1" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+				&nbsp;
+				<input type="button" value="关 闭" name="" class="buttBg1" onClick="h('div_succ_upload');h('div_cover');parent.location.href=parent.location.href;" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+			</div>
+			</div>
+		</div>
+	</div>
+
+</center>
+</form>
+<iframe name="iframe_myboard" style="display:none;"></iframe>
+<form id="form_myboard"  target="iframe_myboard"  enctype="multipart/form-data">
+	<div id="div_myboard" class="main2" style="display:none">
+		<div id="headerbg">
+			<h2>编辑我的黑板报</h2>
+			<span><a href="javascript:h('div_myboard');h('div_cover');"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+			<div class="c"></div>
+		</div>
+		<div id="pop_cont2">
+			<div class="area">
+				  <textarea  id="introtext"  name="introtext" rows="6" cols="50" onpropertychange="if(value.length>200) value=value.substr(0,200)"  onClick="if(this.value=='yi88992005'+'最近没有留言给大家。')   this.value='';">yi88992005最近没有留言给大家。</textarea>   
+			</div>
+			<p align="right" style="color:#a5acb2">最多输入200个汉字</p>
+			<div id="butt_area" >
+			<div style="padding-top:7px;">
+				<input type="button" value="确 定" onclick="save_myboard(1156118465);void(0);" name="" class="buttBg1" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+				&nbsp;
+				<input type="button" value="取 消" name="" class="buttBg1" onClick="h('div_myboard');h('div_cover');" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+			</div>
+			</div>
+		</div>
+	</div>
+</form>
+<form>
+<center>
+	<div id="div_succ_myboard" class="main3" style="display:none">
+		<div id="headerbg">
+			<h2>爱问知识人提示</h2>
+			<span><a href="javascript:h('div_succ_myboard');h('div_cover');parent.location.href=parent.location.href;void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+			<div class="c"></div>
+		</div>
+		<div id="pop_cont3">
+			<div class="area">
+				<img src="http://www.sinaimg.cn/pfp/i/z3/ok.gif" alt="上传成功" />
+				<p style="line-height:22px;">您的内容已经提交成功！<br/>
+				请您稍候几分钟，审核通过后即可显示。
+				</p>
+				<div class="c"></div>
+			</div>
+			<div id="butt_area">
+			<div  style="padding-top:7px;">
+				<input type="button"  onclick="hide_succ_myboard()" value="确 定" name="" class="buttBg1" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+				&nbsp;
+				<input type="button" value="关 闭" name="" class="buttBg1" onClick="h('div_succ_myboard');h('div_cover');parent.location.href=parent.location.href;" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+			</div>
+			</div>
+		</div>
+	</div>
+</form>
+</center>
+<center>
+<iframe name="iframe_myinfo"  id="iframe_myinfo" style="display:none;"></iframe>
+<form id="form_myinfo" name="form_myinfo" target="iframe_myinfo"  enctype="multipart/form-data" method="post">
+<div id="div_myinfo" name="div_myinfo" class="main6" style="display:none">
+		<div id="headerbg">
+			<h2>修改个人资料</h2>
+			<span><a href="javascript:h('div_myinfo');h('div_cover');void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+			<div class="c"></div>
+		</div>
+		<div id="pop_cont6">
+			<div class="area">
+				<div class="tipsBg"  id="errortipdiv" style="display:none"></div>
+				<div class="mustDone"> <span class="co">*</span> 为必填项</div>
+				<div class="c"></div>
+				<p class="t">
+					昵 &nbsp;称：<input type="text"  value="yi88992005" name="div_nick" id="div_nick" class="textbox" />
+					<input type="hidden"  value="yi88992005" name="hide_nick" id="hide_nick" class="textbox"  />
+					<span class="co">*</span>
+					<span class="c9">昵称长度可以为4-16个字符</span>
+				</p>
+				<p  class="t">
+					性 &nbsp;别：
+<script language=javascript>
+
+var a_gendername = new Array("男", "女");
+var a_gendervalue = new Array("1", "2");
+
+var g_gender = "男";
+
+var v_html = "";
+for(i=0; i<a_gendername.length; i++)
+{
+	if (g_gender == a_gendername[i])
+	{
+		v_html += "<input type=radio  name='r_gender' value=\"" + a_gendervalue[i] + "\" checked>" + a_gendername[i] + "　　";
+	}
+	else
+	{
+		v_html += "<input type=radio name='r_gender' value=\"" + a_gendervalue[i] + "\">" + a_gendername[i] + "　　";
+	}
+}
+document.writeln(v_html);
+</script>
+<span class="co" style="margin-left:-20px">*</span>
+				</p>
+				<p class="t">
+					生 &nbsp;日：
+<script language=javascript>
+var g_byear = "1900";
+var g_bmonth = "1";
+var g_bday = "1";
+
+v_html = '<select name=byear style="width:60px;">';
+v_html += "<option value=\"\">" + "</option>";
+for (i=2006; i>=1899; i--)
+{
+	if (g_byear == i)
+	{
+		v_html += "<option value=\"" + i + "\" selected>" + i + "</option>";
+	}
+	else
+	{
+		v_html += "<option value=\"" + i + "\">" + i +  "</option>";
+	}
+}
+v_html += '</select>年 <select name=bmonth>';
+v_html += "<option value=\"\">" + "</option>";
+for (i=1; i<=12; i++)
+{
+	if (g_bmonth == i)
+	{
+		v_html += "<option value=\"" + i + "\" selected>" + i + "</option>";
+	}
+	else
+	{
+		v_html += "<option value=\"" + i + "\">" + i +"</option>";
+	}
+}
+v_html += '</select>月 <select name=bday>';
+v_html += "<option value=\"\">" + "</option>";
+for (i=1; i<=31; i++)
+{
+	if (g_bday == i)
+	{
+		v_html += "<option value=\"" + i + "\" selected>" + i +"</option>";
+	}
+	else
+	{
+		v_html += "<option value=\"" + i + "\">" + i +"</option>";
+	}
+}
+v_html += "</select>日";
+
+document.writeln(v_html);
+
+</script>
+				</p>
+					<input type="text"  name = "input_pro" id="input_pro" value="美国LOS ANGELES" style="display:none;"/> 
+					<input type="text"  name = "input_city" id="input_city"  value="" style="display:none;" /> 
+				<p class="t">
+					所在地：
+					<script language="JavaScript">
+						var mygroup1 = new Group();
+						</script>
+						<select class="select1" name="province" >
+						<script language="JavaScript">
+							var user_pro = "美国LOS ANGELES";
+							var user_city = "";
+							pro_num = mygroup1.Get_Pro_num(user_pro);
+						mygroup1.write_province(pro_num,1);
+						</script>
+						</select>
+						<select class="select1" name="city">
+						<script language="JavaScript">
+							var proObj = document.getElementsByName("province")[0];
+							var cityObj = document.getElementsByName("city")[0];
+							if(user_pro !="海外")
+							{
+								city_num = mygroup1.Get_City_num(user_pro,user_city);
+								mygroup1.write_city(pro_num,city_num,0);
+							}
+							else
+							{
+								cityObj.style.display="none";
+							}
+						</script>
+						</select>
+						
+						<script language="JavaScript">
+							if(pro_num==1001){
+									cityObj.style.display="none";
+								}
+							proObj.onchange = function()
+							{
+								mygroup1.GetCityList(proObj,cityObj);
+								$("input_pro").value = proObj.options[proObj.selectedIndex].text;
+								$("input_city").value = "";
+							};
+							cityObj.onchange = function()
+							{
+								 $("input_city").value = cityObj.options[cityObj.selectedIndex].text;
+							}
+						</script>
+				</p>
+				<p class="t">
+					邮 &nbsp;箱：<input type="text" name="email" id="email" class="textbox" value="yi88992005@sina.com" /> 
+<script language=javascript>
+
+var a_emailpublicname = new Array("隐藏", "公开");
+var a_emailpublicvalue = new Array("0", "1");
+
+var g_emailpublic = "0";
+	
+var v_html = "";
+v_html +='<select name="emailpublic" id="emailpublic">';
+for(i=0; i<a_emailpublicname.length; i++)
+{
+	if( i == g_emailpublic)
+		
+		v_html += "<option   value=\"" + a_emailpublicvalue[i] + "\" selected>" + a_emailpublicname[i] + "</option>  ";
+	else
+	
+		v_html += "<option   value=\"" + a_emailpublicvalue[i] + "\">" + a_emailpublicname[i] + "  </option>";
+}
+//emailpublic.options[g_emailpublic].selected = true;
+v_html +='</select>';
+document.writeln(v_html);
+
+</script>
+				</p>
+				<p class="t c6" style="padding-left:48px;">
+				<input type ="checkbox" name="notifyflag" value="y" id="notifyflag" checked />
+有了回答或其它提示信息，请通知我！
+
+				</p>
+			</div>
+			<div id="butt_area">
+			<div  style="padding-top:7px;">
+				<input type="button" value="确 定" name="" id="upt_myinfo"  onclick="save_myinfo(1156118465);void(0);"class="buttBg1" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+				&nbsp;
+				<input type="button" value="取 消" name="" class="buttBg1" onClick="h('div_myinfo'); h('div_cover');" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+			</div>
+			</div>
+		</div>
+	</div>
+</form>
+</center> 
+<center>
+        <div id="email_validate_tip" class="main3" style="display:none ;height:200px;">
+                <div id="headerbg">
+                        <h2>爱问知识人提示</h2>
+                        <span><a href="javascript:h('email_validate_tip');h('div_cover');parent.location.href=parent.location.href;void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+                        <div class="c"></div>
+                </div>
+                <div id="pop_cont3" style="height:172px">
+                        <div class="area">
+                                <img src="http://www.sinaimg.cn/pfp/i/z3/ok.gif" alt="上传成功" />
+				<p style="width:260px; height:64px; line-height:22px;"><strong>您的个人信息修改成功！</strong><br/>
+				<span id = "email_new" style="font-size:12px; color:#666; line-height:150%;">
+				</span>
+				</p>
+				<div class="c"></div>
+                        </div>
+                        <div id="butt_area">
+			<div  style="padding-top:7px;">
+                                <input type="button"  onclick="hide_succ_upload(1156118465)" value="确 定" name="" class="buttBg1" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+                                &nbsp;
+                                <input type="button" value="关 闭" name="" class="buttBg1" onClick="h('email_validate_tip');h('div_cover');parent.location.href=parent.location.href;" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+                        </div>
+			</div>
+                </div>
+        </div>
+
+</center>
+<center>
+        <div id="otherinfo_validate_tip" class="main3" style="display:none">
+                <div id="headerbg">
+                        <h2>爱问知识人提示</h2>
+                        <span><a href="javascript:h('otherinfo_validate_tip');h('div_cover');parent.location.href=parent.location.href;void(0);"><img src="http://www.sinaimg.cn/pfp/i/z3/close1.gif" alt="关闭" onMouseMove="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close2.gif')" onMouseOut="imgchange(this,'http://www.sinaimg.cn/pfp/i/z3/close1.gif')" /></a></span>
+                        <div class="c"></div>
+                </div>
+                <div id="pop_cont3">
+                        <div class="area">
+                                <img src="http://www.sinaimg.cn/pfp/i/z3/ok.gif" alt="上传成功" />
+                                <p><B>您的个人信息修改成功！</B><br/>
+				&nbsp;                                
+                                </p>
+                                <div class="c"></div>
+                        </div>
+                        <div id="butt_area">
+			<div  style="padding-top:7px;">
+                                <input type="button"  onclick="hide_succ_upload(1156118465)" value="确 定" name="" class="buttBg1" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+                                &nbsp;
+                                <input type="button" value="关 闭" name="" class="buttBg1" onClick="h('otherinfo_validate_tip');h('div_cover');parent.location.href=parent.location.href;" onMouseOver="this.className = 'buttBg2';" onMouseOut="this.className = 'buttBg1';"/>
+                        </div>
+			</div>
+                </div>
+        </div>
+
+</center>
+<script language="javascript">
+function save_logo(s,uid)
+{
+	if(false == chkFile())
+        {
+                return false;
+        }
+        var f = $("form_logo");
+        f.method="post";
+        f.action="/user/userchglogo.php";
+	f.submit();
+	edit_my_img.style.display = "none";
+	//show_succ_upload();
+}	
+function save_myboard(uid){
+        var f = $("form_myboard");
+        f.method = "post";
+        f.action="/user/userchgboard.php";
+        f.target="iframe_myboard";
+        f.enctype="multipart/form-data";
+        f.submit();
+        //div_myboard.style.display="none";
+	//window.location.href = window.location.href;
+        
+}
+function save_myinfo()
+{
+	if(false == check())
+        {
+                return false;
+        }
+	var  f = $("form_myinfo");
+	f.action = "/user/userchginfo.php";
+	//f.target = "_blank";
+	f.submit(); 
+	//div_myinfo.style.display = "none";
+	//window.location.reload();
+}
+function hide_myinfo()
+{
+	div_myinfo.style.display = "none";
+	//parent.location.href=parent.location.href;
+       // window.location.reload();
+}
+function check()
+{
+	var flag = true;
+	var nickvalue = form_myinfo.div_nick.value ;
+	if(nickvalue.length == 0)
+	{
+		errortipdiv.innerHTML = "<p>请输入您的昵称</p>";
+		errortipdiv.style.display = "block";
+		return false;
+	}
+	if(g_strlen(nickvalue) < 4 || g_strlen(nickvalue) >16)
+	{
+		errortipdiv.innerHTML = "<p>昵称为4-16个字符</p>";
+		errortipdiv.style.display = "block";
+		return false;
+	}
+	
+	var emailvalue = form_myinfo.email.value ;
+	if(!isemail(emailvalue) && emailvalue.length != 0)
+	{
+		errortipdiv.innerHTML = "<p>请检查您的Email地址是否正确</p>";
+		errortipdiv.style.display = "block";
+		return false;
+	}
+
+	if(flag == false)
+	{
+		return false;
+	}
+	errortipdiv.style.display = "none";
+	return true;
+}
+function show_succ_email(email)
+{
+	var obj = document.getElementById('email_new');
+	//obj.innerHTML = "<br /><font color=#666666>验证邮件已发送到您的邮箱"+email+"中，点击里面的验证链接以后邮箱才能激活！</font>";
+	obj.innerHTML = "验证邮件已发送到您的邮箱"+email+"中，点击里面的验证链接以后邮箱才能激活！";
+        show_center_div("email_validate_tip");
+}
+function show_succ_otherinfo()
+{
+        show_center_div("otherinfo_validate_tip");
+}
+function isemail(t)
+{   
+	//var stra=/^\s*\w+\@\w+(\.\w+)+\s*$/i; 
+	var stra=/@|＠/i;   
+	if(stra.test(t))   
+	{
+		return true;   
+	}
+	else   
+	{
+		return false;   
+	}
+}
+</script>
+<script src="/user/getuserdata.js" language="javascript" type="text/javascript"></script>
+</body>
+</html>
+
+<script language=javascript>$("li_head").innerHTML="他的首页  <img src='http://www.sinaimg.cn/pfp/i/z3/arrow.gif' alt='arrow'>";</script>

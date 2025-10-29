@@ -1,0 +1,7 @@
+<?php 
+$num_of_pic=5;
+$flash_style="twpd";
+$width=410-105;
+$height=200-0;
+$string="pics=http://202.38.220.102/upload/album/090413/161757185.jpg|http://202.38.220.102/upload/album/090413/161755630.jpg|http://202.38.220.102/upload/album/090413/161749911.jpg|http://202.38.220.102/upload/album/090413/161748100.jpg|http://202.38.220.102/upload/album/090413/161746694.jpg&links=./|./|./|./|./&texts=1|2|3|4|5";
+?>

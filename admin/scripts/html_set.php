@@ -1,0 +1,1 @@
+<?php $file['关于我们']="aboutus.html";$file['联系我们']="contactus.html";$file['隐私说明']="privacy.html"; ?>
